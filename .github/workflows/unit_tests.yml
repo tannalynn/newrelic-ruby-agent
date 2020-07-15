@@ -1,0 +1,28 @@
+  
+name: Unit Test
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the main branch
+on: push
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      LANG: C.UTF-8
+    strategy:
+      matrix:
+        ruby: [2.7.0, 2.6.1, 2.5.3, 2.3.5, 2.2.8, 2.1.10, 2.0.0]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Ruby
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+      - name: show ulimit
+        run:  ulimit -S -n 4096 && ulimit -n
+      - name: Bundle
+        run: bundle install
+      - name: rake test
+        run:  bundle exec rake test TESTOPTS="--verbose"
