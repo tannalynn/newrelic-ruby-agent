@@ -16,9 +16,9 @@ jobs:
           ruby-version: 2.6
       - name: Bundle
         run: bundle install
-      - name: Run Snyk
-        uses: snyk/actions/ruby@master
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          command: test
+      # - name: Run Snyk
+      #   uses: snyk/actions/ruby@master
+      #   env:
+      #     SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      #   with:
+      #     command: test
