@@ -19,7 +19,7 @@ jobs:
       - name: Setup Ruby
         uses: actions/setup-ruby@v1
         with:
-          ruby-version: 2.7.0
+          ruby-version: '2.7.0'
       - name: show ulimit
         run:  ulimit -S -n 4096 && ulimit -n
       - name: Bundle
