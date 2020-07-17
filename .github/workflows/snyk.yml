@@ -4,7 +4,7 @@ name: Snyk Check
 # events but only for the main branch
 on: 
   schedule:
-    - cron: "0 19 * * *"
+    - cron: "0 20 * * *"
     # - cron: "0 7 * * *" midnight pst
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
