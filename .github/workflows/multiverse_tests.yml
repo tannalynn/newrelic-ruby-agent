@@ -12,10 +12,10 @@ jobs:
     env:
       LANG: C.UTF-8
     strategy:
+      fail-fast: false
       matrix:
         ruby: [2.7, 2.6, 2.5, 2.4, 2.3, 2.2]
         multiverse: [agent, api, background, database, httpclients, rails, serialization, sinatra, background_2, rest]
-        fail-fast: false
     steps:
       - uses: actions/checkout@v2
       - name: Setup Ruby
