@@ -43,9 +43,11 @@ class DeploymentTest < Minitest::Test
   def cap_it(custom_env={})
     cmd = "cap production newrelic:notice_deployment"
     default_env = { 'FAKE_RPM_SITE_PORT' => @rpm_site.port.to_s }
+    more = nil
     output = with_environment(default_env.merge(custom_env)) do
-      `#{cmd}`
+      more = `#{cmd}`
     end
-    assert $?.success?, "cap command '#{cmd}' failed with output: #{output}"
+
+    assert $?.success?, "cap command '#{cmd}' failed with output: #{output} // more: \"#{more.inspect}\" "
   end
 end
