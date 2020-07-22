@@ -24,6 +24,8 @@ jobs:
       - name: show ulimit
         run:  ulimit -S -n 4096 && ulimit -n
       - name: Bundle
+        if: ${{ always() }}
         run: bundle install
       - name: rake test
+        if: ${{ always() }}
         run:  bundle exec rake test:multiverse[${{ matrix.multiverse }}] TESTOPTS="--verbose"
