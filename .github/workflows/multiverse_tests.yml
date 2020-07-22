@@ -15,6 +15,7 @@ jobs:
       matrix:
         ruby: [2.7, 2.6, 2.5, 2.4, 2.3, 2.2]
         multiverse: [agent, api, background, database, httpclients, rails, serialization, sinatra, background_2, rest]
+        fail-fast: false
     steps:
       - uses: actions/checkout@v2
       - name: Setup Ruby
@@ -24,8 +25,6 @@ jobs:
       - name: show ulimit
         run:  ulimit -S -n 4096 && ulimit -n
       - name: Bundle
-        if: ${{ always() }}
         run: bundle install
       - name: rake test
-        if: ${{ always() }}
         run:  bundle exec rake test:multiverse[${{ matrix.multiverse }}] TESTOPTS="--verbose"
