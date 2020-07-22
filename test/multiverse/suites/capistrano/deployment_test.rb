@@ -48,6 +48,6 @@ class DeploymentTest < Minitest::Test
       more = `#{cmd}`
     end
 
-    assert $?.success?, "cap command '#{cmd}' failed with output: #{output} // more: \"#{more.inspect}\" "
+    assert $?.success?, "cap command '#{cmd}' failed with output: #{output} // cap more: \"#{more.inspect}\" "
   end
 end
