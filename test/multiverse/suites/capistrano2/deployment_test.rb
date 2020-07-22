@@ -33,6 +33,6 @@ class DeploymentTest < Minitest::Test
     output = with_environment('FAKE_RPM_SITE_PORT' => @rpm_site.port.to_s) do
       more = `#{cmd}`
     end
-    assert $?.success?, "cap command '#{cmd}' failed with output: #{output} // cap2 more: \"#{more.inspect}\" "
+    assert $?.success?, "cap command '#{cmd}' failed with output: #{output} // cap2 more: \"#{$?.inspect}\" "
   end
 end
