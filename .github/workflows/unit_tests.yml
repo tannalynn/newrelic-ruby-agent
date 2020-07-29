@@ -77,4 +77,4 @@ jobs:
       - name: Bundle
         run: bundle install
       - name: rake test
-        run:  bundle exec rake test:env[{{ matrix.rails }}] TESTOPTS="--verbose"
+        run:  bundle exec rake test:env[${{ matrix.rails }}] TESTOPTS="--verbose"
