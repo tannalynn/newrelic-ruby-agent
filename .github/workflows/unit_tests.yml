@@ -14,58 +14,58 @@ jobs:
     strategy:
       matrix:
         ruby: [2.7, 2.6, 2.5, 2.4, 2.3, 2.2]
-        envs: [norails, rails60, rails52, rails51, rails42, rails41, rails40, rails32, rails31, rails30]
+        rails: [norails, rails60, rails52, rails51, rails42, rails41, rails40, rails32, rails31, rails30]
         exclude:
           - ruby: 2.7
-            envs: rails30
+            rails: rails30
           - ruby: 2.7
-            envs: rails31
+            rails: rails31
           - ruby: 2.7
-            envs: rails32
+            rails: rails32
           - ruby: 2.7
-            envs: rails40
+            rails: rails40
           - ruby: 2.7
-            envs: rails41
+            rails: rails41
           - ruby: 2.7
-            envs: rails42
+            rails: rails42
           - ruby: 2.7
-            envs: rails50
+            rails: rails50
           - ruby: 2.7
-            envs: rails51
+            rails: rails51
           - ruby: 2.7
-            envs: rails52
+            rails: rails52
           - ruby: 2.6
-            envs: rails30
+            rails: rails30
           - ruby: 2.6
-            envs: rails31
+            rails: rails31
           - ruby: 2.6
-            envs: rails32
+            rails: rails32
           - ruby: 2.6
-            envs: rails40
+            rails: rails40
           - ruby: 2.6
-            envs: rails41
+            rails: rails41
           - ruby: 2.5
-            envs: rails30
+            rails: rails30
           - ruby: 2.5
-            envs: rails31
+            rails: rails31
           - ruby: 2.5
-            envs: rails40
+            rails: rails40
           - ruby: 2.5
-            envs: rails41
+            rails: rails41
           - ruby: 2.4
-            envs: rails30
+            rails: rails30
           - ruby: 2.4
-            envs: rails31
+            rails: rails31
           - ruby: 2.4
-            envs: rails40
+            rails: rails40
           - ruby: 2.4
-            envs: rails41
+            rails: rails41
           - ruby: 2.4
-            envs: rails60
+            rails: rails60
           - ruby: 2.3
-            envs: rails60
+            rails: rails60
           - ruby: 2.3
-            envs: rails60
+            rails: rails60
     steps:
       - uses: actions/checkout@v2
       - name: Setup Ruby
@@ -77,4 +77,4 @@ jobs:
       - name: Bundle
         run: bundle install
       - name: rake test
-        run:  bundle exec rake test TESTOPTS="--verbose"
+        run:  bundle exec rake test:env[{{ matrix.rails }}] TESTOPTS="--verbose"
