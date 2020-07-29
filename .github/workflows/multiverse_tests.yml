@@ -67,6 +67,9 @@ jobs:
         with:
           ruby-version: ${{ matrix.ruby-version }}
 
+      - name: install libsasl
+        run: sudo apt-get install libsasl2-dev
+
       - name: Bundler install
         run: bundle install --path ~/.bundle
 
