@@ -65,7 +65,7 @@ jobs:
             rails: rails60
           - ruby: 2.3
             rails: rails60
-          - ruby: 2.3
+          - ruby: 2.2
             rails: rails60
     steps:
       - uses: actions/checkout@v2
