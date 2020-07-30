@@ -93,7 +93,7 @@ jobs:
         run: sudo apt-get install libsasl2-dev
 
       - name: Bundler install
-        run: bundle install --path ~/.bundle
+        run: bundle install --path ~/.bundle --retry 3 --jobs 4
 
       - name: Start mysql
         run: sudo systemctl start mysql
