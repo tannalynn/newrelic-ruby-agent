@@ -29,6 +29,7 @@ jobs:
           ruby-version: ${{ matrix.ruby-version }}
   
   multiverse_test:
+    needs: build_ruby
     runs-on: ubuntu-latest
     services:
       # Label used to access the service container
