@@ -96,6 +96,9 @@ jobs:
       - name: install libcurl
         run: sudo apt-get install libcurl4-openssl-dev
 
+      - name: install more libraries
+        run: sudo apt-get install libgmp3-dev openssl libssl-dev build-essential haveged
+
       - name: Bundler install
         run: bundle install 
 
