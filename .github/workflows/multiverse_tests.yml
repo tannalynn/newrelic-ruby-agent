@@ -90,8 +90,8 @@ jobs:
         with:
           ruby-version: ${{ matrix.ruby-version }}
 
-      - name: install libsasl
-        run: sudo apt-get install libsasl2-dev
+      - name: install libraries
+        run: sudo apt-get install libsasl2-dev libxml2-dev libxslt1-dev python-dev libcurl3 libcurl3-gnutls libcurl4-openssl-dev
 
       - name: Bundler install
         run: bundle install 
