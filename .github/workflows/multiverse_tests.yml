@@ -111,3 +111,4 @@ jobs:
         run: bundle exec rake test:multiverse[group=${{ matrix.multiverse }},verbose,nocache]
         env:
           DB_PORT: ${{ job.services.mysql.ports[3306] }}
+          MYSQL_ROOT_PASSWORD: root
