@@ -4,15 +4,14 @@ name: Multiverse Test
 # events but only for the main branch
 on: push
 
-env:
-  ruby-version: [ "2.0.0-p648", "2.1.10", "2.2.10", "2.3.8", "2.4.10", "2.5.8", "2.6.6", "2.7.1", "jruby-9.2.12.0" ]
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   build_ruby:
     runs-on: ubuntu-latest
     strategy: 
       matrix: 
-        ruby-version: ${{ env.ruby-version }}
+        ruby-version: [ "2.0.0-p648", "2.1.10", "2.2.10", "2.3.8", "2.4.10", "2.5.8", "2.6.6", "2.7.1", "jruby-9.2.12.0" ]
     steps:
       - uses: actions/checkout@v2
 
@@ -67,7 +66,7 @@ jobs:
       fail-fast: false
       matrix:
         multiverse: [agent, api, background, background_2, database, httpclients, rails, rest, serialization, sinatra]
-        ruby-version: ${{ env.ruby-version }}
+        ruby-version: [ "2.0.0-p648", "2.1.10", "2.2.10", "2.3.8", "2.4.10", "2.5.8", "2.6.6", "2.7.1", "jruby-9.2.12.0" ]
         exclude:
           - ruby-version: "2.7.1"
             multiverse: api
