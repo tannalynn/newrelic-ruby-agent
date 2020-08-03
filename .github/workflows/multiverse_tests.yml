@@ -65,7 +65,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        multiverse: [agent, api, background, background_2, database, httpclients, rails, rest, serialization, sinatra]
+        # multiverse: [agent, api, background, background_2, database, httpclients, rails, rest, serialization, sinatra]
+        multiverse: [rails]
         ruby-version: [ "2.0.0-p648", "2.1.10", "2.2.10", "2.3.8", "2.4.10", "2.5.8", "2.6.6", "2.7.1", "jruby-9.2.12.0" ]
         exclude:
           - ruby-version: "2.7.1"
@@ -105,6 +106,8 @@ jobs:
 
       - name: Start mysql
         run: sudo systemctl start mysql
+        env:
+          MYSQL_ROOT_PASSWORD: root
 
       - name: rake test
         run: bundle exec rake test:multiverse[group=${{ matrix.multiverse }},verbose,nocache]
