@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy: 
       matrix: 
-        ruby-version: [ "2.0.0-p648", "2.1.10", "2.2.10", "2.3.8", "2.4.10", "2.5.8", "2.6.6", "2.7.1", "jruby-9.2.12.0" ]
+        ruby-version: [ "2.1.10" ]
     steps:
       - uses: actions/checkout@v2
 
@@ -59,7 +59,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        ruby-version: [ "2.0.0-p648", "2.1.10", "2.2.10", "2.3.8" ]
+        ruby-version: [ "2.1.10" ]
+        # ruby-version: [ "2.0.0-p648", "2.1.10", "2.2.10", "2.3.8" ]
     steps:
       - uses: actions/checkout@v2
 
@@ -84,7 +85,7 @@ jobs:
 
       - run: gem install nokogiri -v '1.9.1'
       - if: ${{ always() }}
-        run: cat /home/runner/.rubies/ruby-${{ matrix.ruby-version }}/lib/ruby/gems/${{ matrix.ruby-version }}/extensions/x86_64-linux/${{ matrix.ruby-version }}/nokogiri-1.9.1/mkmf.log
+        run: cat  /home/runner/.rubies/ruby-2.1.10/lib/ruby/gems/2.1.0/extensions/x86_64-linux/2.1.0/nokogiri-1.9.1/mkmf.log
 
       # - run: cat /home/runner/.rubies/ruby-${{ matrix.ruby-version }}/lib/ruby/gems/${{ matrix.ruby-version }}/extensions/x86_64-linux/${{ matrix.ruby-version }}/memcached-1.8.0/mkmf.log
       # - if: ${{ always() }}
