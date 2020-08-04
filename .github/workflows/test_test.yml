@@ -204,9 +204,7 @@ jobs:
         uses: ./.github/actions/build-ruby
         with:
           ruby-version: ${{ matrix.ruby-version }}
-          dependencies: libcurl4-nss-dev build-essential libsasl2-dev libxslt1-dev libxml2-dev
-
-      - run: export CC=gcc
+          dependencies: libcurl4-nss-dev build-essential libsasl2-dev libxslt1-dev libxml2-dev libz-dev libiconv-hook1 libiconv-hook-dev
 
       - name: Bundler install
         run: bundle install
