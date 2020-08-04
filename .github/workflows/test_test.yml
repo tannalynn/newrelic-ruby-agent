@@ -83,7 +83,8 @@ jobs:
 
 
       - run: gem install nokogiri -v '1.9.1'
-      - run: cat /home/runner/.rubies/ruby-${{ matrix.ruby-version }}/lib/ruby/gems/${{ matrix.ruby-version }}/extensions/x86_64-linux/${{ matrix.ruby-version }}/nokogiri-1.9.1/mkmf.log
+      - if: ${{ always() }}
+        run: cat /home/runner/.rubies/ruby-${{ matrix.ruby-version }}/lib/ruby/gems/${{ matrix.ruby-version }}/extensions/x86_64-linux/${{ matrix.ruby-version }}/nokogiri-1.9.1/mkmf.log
 
       # - run: cat /home/runner/.rubies/ruby-${{ matrix.ruby-version }}/lib/ruby/gems/${{ matrix.ruby-version }}/extensions/x86_64-linux/${{ matrix.ruby-version }}/memcached-1.8.0/mkmf.log
       # - if: ${{ always() }}
