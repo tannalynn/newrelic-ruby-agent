@@ -59,15 +59,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        multiverse: [ background_2, rails, rest ]
-        ruby-version: [ "2.0.0-p648", "2.1.10", "2.2.10", "2.3.8", "2.4.10", "2.5.8", "2.6.6", "2.7.1", "jruby-9.2.12.0" ]
-        exclude:
-          - ruby-version: "2.7.1"
-            multiverse: api
-          - ruby-version: "2.7.1"
-            multiverse: sinatra
-          - ruby-version: "jruby-9.2.12.0"
-            multiverse: agent
+        ruby-version: [ "2.0.0-p648", "2.1.10", "2.2.10", "2.3.8" ]
     steps:
       - uses: actions/checkout@v2
 
@@ -89,16 +81,13 @@ jobs:
       - name: Bundler install
         run: bundle install
 
-      - name: Start mysql
-        run: sudo systemctl start mysql
 
-      - name: Run unit tests
-        run: bundle exec rake test:multiverse[group=${{ matrix.multiverse }},verbose]
-        env:
-          DB_PORT: ${{ job.services.mysql.ports[3306] }}
-          MYSQL_PASSWORD: root
+      - run: gem install nokogiri -v '1.9.1'
+      - run: cat /home/runner/.rubies/ruby-${{ matrix.ruby-version }}/lib/ruby/gems/${{ matrix.ruby-version }}/extensions/x86_64-linux/${{ matrix.ruby-version }}/nokogiri-1.9.1/mkmf.log
 
-      - if: ${{ always() }}
-        run: cat /home/runner/.rubies/ruby-${{ matrix.ruby-version }}/lib/ruby/gems/${{ matrix.ruby-version }}/extensions/x86_64-linux/${{ matrix.ruby-version }}/memcached-1.8.0/mkmf.log
-      - if: ${{ always() }}
-        run: cat /home/runner/.rubies/ruby-${{ matrix.ruby-version }}/lib/ruby/gems/${{ matrix.ruby-version }}/extensions/x86_64-linux/${{ matrix.ruby-version }}/nokogiri-1.9.1/mkmf.log
+      # - run: cat /home/runner/.rubies/ruby-${{ matrix.ruby-version }}/lib/ruby/gems/${{ matrix.ruby-version }}/extensions/x86_64-linux/${{ matrix.ruby-version }}/memcached-1.8.0/mkmf.log
+      # - if: ${{ always() }}
+      #   run: cat /home/runner/.rubies/ruby-${{ matrix.ruby-version }}/lib/ruby/gems/${{ matrix.ruby-version }}/extensions/x86_64-linux/${{ matrix.ruby-version }}/nokogiri-1.9.1/mkmf.log
+      # - if: ${{ always() }}
+      #   run: cat /home/runner/.rubies/ruby-${{ matrix.ruby-version }}/lib/ruby/gems/${{ matrix.ruby-version }}/extensions/x86_64-linux/${{ matrix.ruby-version }}/nokogiri-1.6.8.1/mkmf.log
+
