@@ -1,5 +1,21 @@
 # New Relic Ruby Agent Release Notes #
 
+  ## v6.14.0
+
+  * **Bugfix: dependency detection of Redis now works without raising an exception**
+    
+    Previously, when detecting if Redis was available to instrument, the dependency detection would fail with an Exception raised
+    (with side effect of not attempting to instrument Redis).  This is now fixed with a better dependency check that resolves falsly without raising an `Exception`.
+
+  * **Bugfix: Gracefully handles NilClass as a Middleware Class when instrumenting**
+
+    Previously, if a NilClass is passed as the Middleware Class to instrument when processing the middleware stack,
+    the agent would fail to fully load and instrument the middleware stack.  This fix gracefully skips over nil classes.
+
+  * **Memory Sampler updated to recognize macOS Big Sur**
+
+    Previously, the agent was unable to recognize the platform macOS Big Sur in the memory sampler, resulting in an error being logged. The memory sampler is now able to recognize Big Sur. 
+    
   ## v6.13.1
 
   * **Bugfix: obfuscating URLs to external services no longer modifying original URI**
